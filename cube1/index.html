@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS CUBE</title>
+    <link rel="stylesheet" href="static/css/cube-test.css">
+</head>
+<body>
+    <!-- https://codepen.io/mirceageorgescu/pen/roblc -->
+    <div class="wrapper">
+        <!-- <div class="wrapper3D control" id="cube0">
+            <o class="x"></o>
+            <b class="top">top
+            </b> 
+            <b class="bottom">bottom</b>
+            <b class="left">left
+                <b class="back">back</b>
+            </b> 
+            <b class="right">right
+                <b class="front">front</b>
+            </b>
+            <div class="wrapper3D" id="cube2">
+                <o class="x"></o>
+                <b class="top">top
+                </b> 
+                <b class="bottom">bottom</b>
+                <b class="left">left
+                    <b class="back">back</b>
+                </b> 
+                <b class="right">right
+                    <b class="front">front</b>
+                </b>
+            </div>
+            <div class="wrapper3D" id="cube3">
+                <o class="x"></o>
+                <b class="top">top
+                </b> 
+                <b class="bottom">bottom</b>
+                <b class="left">left
+                    <b class="back">back</b>
+                </b> 
+                <b class="right">right
+                    <b class="front">front</b>
+                </b>
+            </div> 
+        </div>-->
+
+      </div>
+      <script src="https://code.jquery.com/jquery-3.5.0.min.js"></script>
+      <script>
+
+
+        function cloneCube(id, x, y, z, css={}, classe={}) {
+            let cube = `<div class="wrapper3D" id="cube${id}">
+                <o class="x"></o>
+                <b class="top">top
+                </b> 
+                <b class="bottom">bottom</b>
+                <b class="left">left
+                    <b class="back">back</b>
+                </b> 
+                <b class="right">right
+                    <b class="front">front</b>
+                </b>
+            </div>`;
+            $( "#cubeAxis" ).append( cube );
+            
+            let hotfixZ = (z < 0) ? 50 : 0 ;
+            if (z == 0)
+                hotfixZ = 0;
+            else if (z < 0) 
+                hotfixZ = 50;
+            else if (z > 0)
+                hotfixZ = -50;
+
+            $('#cube'+id).css({
+                transform: `translate3d(${100*parseInt(x)}%, ${100*parseInt(y)}%, ${(50*parseInt(z))}px)`,
+            })
+            
+            return '#cube'+id;
+        }
+
+          $(function(){
+
+            let v3 = { x:0,y:0,z:0 }
+
+            let cube = {
+                r: v3
+            }
+
+
+
+            let cubeAxis = `<div class="wrapper3D control" id="cubeAxis">
+                <o class="x"></o>
+                <b class="top">top
+                </b> 
+                <b class="bottom">bottom</b>
+                <b class="left">left
+                    <b class="back">back</b>
+                </b> 
+                <b class="right">right
+                    <b class="front">front</b>
+                </b>
+            </div>`;
+            $( ".wrapper" ).append( cubeAxis );
+
+            
+
+            let i = 0;
+            for (let z = -1; z < 2; z++) {
+                for (let y = -1; y < 2; y++) {
+                    for (let x = -1; x < 2; x++) {
+                        i++;
+                        //console.log('cloneCube(', i, x, y, z,')')
+                        let css = {}
+                        let classe = ''
+
+                        // css pour reperer les cubis
+                        // avec ces class css
+                        css = {background: 'red'};
+
+
+                        let cubi = cloneCube(i, x, y, z);
+
+                        if( z < 0) $(cubi).addClass('cubi-back');
+                        if( z > 0) $(cubi).addClass('cubi-front');
+                        if( y < 0) $(cubi).addClass('cubi-top');
+                        if( y > 0) $(cubi).addClass('cubi-bottom');
+                        if( x < 0) $(cubi).addClass('cubi-left');
+                        if( x > 0) $(cubi).addClass('cubi-right');
+                        
+                    }
+                }
+            }
+              
+            $('.cubi-front *').css({background: 'grey'}); 
+            let tx = 0;
+            $( "body" ).keydown((e) => {
+                
+                console.log(e.key)
+
+                if (e.key === 'ArrowUp') cube.r.x += 1;
+                if (e.key === 'ArrowDown') cube.r.x += -1;
+                if (e.key === 'ArrowRight') cube.r.y += 1;
+                if (e.key === 'ArrowLeft') cube.r.y += -1;
+
+                $(".control").css({
+                    transform: `rotateX(${cube.r.x}deg) rotateY(${cube.r.y}deg) rotateZ(${cube.r.z}deg) translate3d(0,0,0)`
+                })
+                /*$(".cubi-front").css({
+                    transform: `translateX(${cube.r.x}px)`
+                })*/
+
+                if (e.key === '6') tx++;
+                if (e.key === '4') tx--;
+                
+                $( ".cubi-front" ).each(function( index ) {
+                    let transform = $(this).css('transform').match(/-?[0-9]+,/g);
+                    let tx = transform[12];
+                    let ty = transform[13];
+                    let tz = transform[14];
+                    console.log($(this).attr('id'), tx, ty, tz)
+                });
+
+            });
+          })
+      </script>
+    </body>
+</html>

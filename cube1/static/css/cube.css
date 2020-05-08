@@ -1,0 +1,143 @@
+body{
+    /* background:url(../image/background/background-1.jpg); */
+    background: rgb(66, 66, 66);
+}
+  
+  /* keyframes for rotating animation */
+  /*@-webkit-keyframes spin {
+    from { transform: rotateY(0); }
+    to   { transform: rotateY(360deg); }
+  }*/
+  
+  /* scene wrapper */
+  .wrapper{
+    height: 600px;
+    width: 600px;
+    margin-top: 0;
+    position:relative;
+    perspective: 800px;
+    perspective-origin: 50% 50%;
+    border: solid 2px black;
+    background:black;
+  }
+
+  .ox{
+    position: absolute;
+    margin-top: 5%;
+    width: 50%;
+    height: 0px;
+    border-top: brown solid 1px;
+    transform-style: preserve-3d;
+  }
+  
+  .oy{
+    position: absolute;
+    margin: 0 50%;
+    width: 0px;
+    height: 50%;
+    bottom: 0;
+    border-left: rgb(42, 173, 49) solid 1px;
+    transform-style: preserve-3d;
+  }
+  
+  /* cube wrapper */
+  .cube{
+    position: relative;
+    margin: 0 0;
+    width: 200px;
+    transform-style: preserve-3d;
+    animation: spin 4s infinite linear;
+    /* transition: all 1s linear; */
+    transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg) translate3d(100%,100%,0);
+  }
+  
+  /* outer cube */
+  b{
+    position:absolute;
+    width:200px;
+    height:200px;
+    display:block;
+    background:rgba(255,255,255,0.1);
+    box-shadow:inset 0 0 30px rgba(0,0,0,0.2);
+    font-size:20px;
+    text-align:center;
+    line-height:200px;
+    color:rgba(0,0,0,0.5);
+    font-family:sans-serif;
+    text-transform:uppercase;
+    transition: all 1s linear;
+  }
+  b.back{
+    transform: translateZ(-100px) rotateY(180deg);
+    background: #0B0;
+  }
+  b.right{
+    transform:rotateY(-270deg) translateX(100px);
+    transform-origin: top right;
+    background: rgba(255, 0, 0, 1);
+  }
+  b.left{
+    transform:rotateY(270deg) translateX(-100px);
+    transform-origin: center left;
+    background: rgba(255, 136, 0, 1);
+  }
+  b.top{
+    transform:rotateX(-90deg) translateY(-100px);
+    transform-origin: top center;
+    background: rgba(255, 255, 0, 1);
+  }
+  b.bottom{
+    transform:rotateX(90deg) translateY(100px);
+    transform-origin: bottom center;
+    background: rgba(255, 255, 255, 1);
+  }
+  b.front{
+    transform: translateZ(100px);
+    background: rgba(0, 0, 255, 1);
+  }
+  
+  /* inner cube */
+  /*i{
+    position:absolute;
+    top:50px;
+    left:50px;
+    width:100px;
+    height:100px;
+    display:block;
+    background:url(static/image/gafa/google.jpg);
+    transition: all 1s linear;
+  }
+  i.front{
+    transform: translateZ(50px);
+  }
+  i.back{
+    transform: translateZ(-50px) rotateY(180deg);
+  }
+  i.bottom{
+    transform:rotateX(-90deg) translateY(50px);
+    transform-origin: left bottom;
+  }
+  i.left{
+    transform:rotateY(270deg) translateX(-50px);
+    transform-origin: center left;
+  }
+  i.right{
+    transform:rotateY(-270deg) translateX(50px);
+    transform-origin: top right;
+  }
+  i.top{
+    transform:rotateX(-270deg) translateY(-50px);
+    transform-origin: left top;
+  }*/
+  
+  /* hover transformations */
+  .cube:hover{
+    top:150px;
+  }
+  .cube:hover b.top{
+    transform: translateZ(100px) rotateX(-210deg);
+    transform-origin: top center;
+  }
+  .cube:hover i{
+    top:-200px;
+  }

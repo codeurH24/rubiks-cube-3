@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS CUBE</title>
+    <link rel="stylesheet" href="static/css/cube.css">
+</head>
+<body>
+    <!-- https://codepen.io/mirceageorgescu/pen/roblc -->
+    <div class="wrapper">
+        <div class="ox"></div>
+        <div class="oy">test</div>
+        <div class="cube">
+          <b class="front">front</b>
+          <b class="back">back</b>
+          <b class="top">top</b>
+          <b class="bottom">bottom</b>
+          <b class="left">left</b>
+          <b class="right">right</b>
+          <!-- <i class="front"></i>
+          <i class="back"></i>
+          <i class="top"></i>
+          <i class="bottom"></i>
+          <i class="left"></i>
+          <i class="right"></i> -->
+        </div>
+      </div>
+      <script src="https://code.jquery.com/jquery-3.5.0.min.js"></script>
+      <script>
+          $(function(){
+
+            let v3 = { x:0,y:0,z:0 }
+
+            let cube = {
+                r: v3
+            }
+            let x = 0;
+
+            
+
+            $( "body" ).keydown((e) => {
+                console.log( "key: ", e.key, cube.r.x );
+                if (e.key === 'ArrowUp') cube.r.x += 1;
+                if (e.key === 'ArrowDown') cube.r.x += -1;
+                if (e.key === 'ArrowRight') cube.r.y += 1;
+                if (e.key === 'ArrowLeft') cube.r.y += -1;
+
+                $(".cube").css({
+                    transform: `rotateX(${cube.r.x}deg) rotateY(${cube.r.y}deg) rotateZ(${cube.r.z}deg) translate3d(0,0,0)`
+                })
+
+
+            });
+          })
+      </script>
+    </body>
+</html>
