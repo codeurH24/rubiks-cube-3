@@ -128,543 +128,46 @@ import MatriceCube from '../../lib/MatriceCube.class.js';
 
                         matriceCube.push({i:i, id:'cube'+i, t:{x, y, z}, r:{x:0,y:0,z:0}})
                         let cubi = cloneCube(i, x, y, z);
-
-                        // if( z < 0) $(cubi).addClass('cubi-back');
-                        // if( z > 0) $(cubi).addClass('cubi-front');
-                        // if( y < 0) $(cubi).addClass('cubi-top');
-                        // if( y > 0) $(cubi).addClass('cubi-bottom');
-                        // if( x < 0) $(cubi).addClass('cubi-left');
-                        // if( x > 0) $(cubi).addClass('cubi-right');
-
-                        //cubi.cube = {r: {x:0, y:0, z:0}}
-                        //cubi.dataset['transform'] = JSON.stringify({r: {x:0, y:0, z:0}});
+                        
                         $(cubi).attr('data-transform-rotate', JSON.stringify({r: {x:0, y:0, z:0}}))
                         $(cubi).attr('data-transform-translate', JSON.stringify({t:{x:x*50, y:y*50, z:z*50}}))
                     }
                 }
             }
-            // déplace le front sur l'axe de rotation
-            //$('#r-axis').append($('.cubi-front'))
             
-            
-
-            //$('.cubi-front *').css({background: '#777'}); 
-
             matriceCube = new MatriceCube(matriceCube);
             
-            // matriceCube.log();
             matriceCube.build();
             
 
-            //let t1 = matriceCube.cubi(1).transform();
-            
-            // TEST Z 90
-            // t1.rotateZ(90) // U > R
-            // y 
-            // t1.rotateX(90) L > F
-            // x
-            // t1.rotateY(90) // U > F
-
-            // TEST X 90
-            //t1.rotateX(90) // F > U
-            // y
-            //t1.rotateZ(90) // R > F
-            // z
-            // t1.rotateY(90)
-
-            // TEST Y 90
-            // t1.rotateY(90) // F > R
-            // x
-            // t1.rotateZ(90) // U > B
-            // z
-            // t1.rotateX(90) // R > U
-
-
-
-            // SENARIO 4 etape
-            // t1.rotateZ(90) // y=x x=y
-            // // y etape 2
-            // t1.rotateX(90) // y=z z=y > y=x z=y x=z
-            // // y
-            // // t1.rotateX(90) // F > R 
-            // // z
-            // //t1.rotateY(90) // U > R 
-            // // x etape 3
-            // t1.rotateZ(90); // F > U
-
-            // t1.rotateY(90)
-            // t1.rotateZ(270)
-            // console.log('HELLO', $('#cube1').css('transform') );
-
-
-            // U D F R B L
-
-           // UR matrix3d(6.12323e-17, -1, 0, 0, 1, 6.12323e-17, 0, 0, 0, 0, 1, 0, -50.2857, -150.286, -50, 1)
-            // UF matrix3d(3.7494e-33, -6.12323e-17, -1, 0, 1, 6.12323e-17, 0, 0, 6.12323e-17, -1, 6.12323e-17, 0, -50.2857, -150.286, -50, 1)
-            // UL matrix3d(-6.12323e-17, 1, -1.22465e-16, 0, 1, 6.12323e-17, 0, 0, 7.49879e-33, -1.22465e-16, -1, 0, -50.2857, -150.286, -50, 1)
-            // UB matrix3d(-1.12482e-32, 1.83697e-16, 1, 0, 1, 6.12323e-17, 0, 0, -6.12323e-17, 1, -1.83697e-16, 0, -50.2857, -150.286, -50, 1)
-
-            
-            // DL matrix3d(6.12323e-17, 1, 0, 0, -1, 6.12323e-17, 0, 0, 0, 0, 1, 0, -50.2857, -150.286, -50, 1)
-            // DB matrix3d(3.7494e-33, 6.12323e-17, -1, 0, -1, 6.12323e-17, 0, 0, 6.12323e-17, 1, 6.12323e-17, 0, -50.2857, -150.286, -50, 1)
-            // DR matrix3d(-6.12323e-17, -1, -1.22465e-16, 0, -1, 6.12323e-17, 0, 0, 7.49879e-33, 1.22465e-16, -1, 0, -50.2857, -150.286, -50, 1)
-            // DF matrix3d(-1.12482e-32, -1.83697e-16, 1, 0, -1, 6.12323e-17, 0, 0, -6.12323e-17, -1, -1.83697e-16, 0, -50.2857, -150.286, -50, 1)
-
-            
-            // FU matrix3d(6.12323e-17, 0, 1, 0, 0, 1, 0, 0, -1, 0, 6.12323e-17, 0, -50.2857, -150.286, -50, 1)
-            // FL matrix3d(3.7494e-33, 1, 6.12323e-17, 0, -6.12323e-17, 6.12323e-17, -1, 0, -1, 0, 6.12323e-17, 0, -50.2857, -150.286, -50, 1)
-            // FD matrix3d(-6.12323e-17, 1.22465e-16, -1, 0, -7.49879e-33, -1, -1.22465e-16, 0, -1, 0, 6.12323e-17, 0, -50.2857, -150.286, -50, 1)
-            // FR matrix3d(-1.12482e-32, -1, -1.83697e-16, 0, 6.12323e-17, -1.83697e-16, 1, 0, -1, 0, 6.12323e-17, 0, -50.2857, -150.286, -50, 1)
-
-
-            
-            // RD matrix3d(-1, 1.22465e-16, 0, 0, -1.22465e-16, -1, 0, 0, 0, 0, 1, 0, -50.2857, -150.286, -50, 1)
-            // RB matrix3d(-1, 1.22465e-16, 0, 0, -7.49882e-33, -6.12323e-17, 1, 0, 1.22465e-16, 1, 6.12323e-17, 0, -50.2857, -150.286, -50, 1)
-            // RU matrix3d(-1, 1.22465e-16, 0, 0, 1.22465e-16, 1, 1.22465e-16, 0, 1.49976e-32, 1.22465e-16, -1, 0, -50.2857, -150.286, -50, 1)
-            // RF matrix3d(-1, 1.22465e-16, 0, 0, 2.24965e-32, 1.83697e-16, -1, 0, -1.22465e-16, -1, -1.83697e-16, 0, -50.2857, -150.286, -50, 1)
-
-
-            // BU matrix3d(6.12323e-17, 0, -1, 0, 0, 1, 0, 0, 1, 0, 6.12323e-17, 0, -50.2857, -150.286, -50, 1)
-            // BL matrix3d(3.7494e-33, 1, -6.12323e-17, 0, -6.12323e-17, 6.12323e-17, 1, 0, 1, 0, 6.12323e-17, 0, -50.2857, -150.286, -50, 1)
-            // BD matrix3d(-6.12323e-17, 1.22465e-16, 1, 0, -7.49879e-33, -1, 1.22465e-16, 0, 1, 0, 6.12323e-17, 0, -50.2857, -150.286, -50, 1)
-            // BR matrix3d(-1.12482e-32, -1, 1.83697e-16, 0, 6.12323e-17, -1.83697e-16, -1, 0, 1, 0, 6.12323e-17, 0, -50.2857, -150.286, -50, 1)
-
-            
-            // LU matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, -50.2857, -150.286, -50, 1)
-            // LF matrix3d(1, 0, 0, 0, 0, 6.12323e-17, 1, 0, 0, -1, 6.12323e-17, 0, -50.2857, -150.286, -50, 1)
-            // LD matrix3d(1, 0, 0, 0, 0, -1, 1.22465e-16, 0, 0, -1.22465e-16, -1, 0, -50.2857, -150.286, -50, 1)
-            // LB matrix3d(1, 0, 0, 0, 0, -1.83697e-16, -1, 0, 0, 1, -1.83697e-16, 0, -50.2857, -150.286, -50, 1)
-            
-
-            let pos = (code, x,y,z) => {
-
-                if (x == -1) x = -150
-                if (x ==  0) x = 0
-                if (x ==  1) x = 150
-
-                if (y == -1) y = -150
-                if (y ==  0) y = 0
-                if (y ==  1) y = 150
-
-                if (z == -1) z = -150
-                if (z ==  0) z = 0
-                if (z ==  1) z = 150
-
-
-
-                let transform = '';
-                switch (code) {
-                    case 'UR':
-                        transform = 'matrix3d(6.12323e-17, -1, 0, 0, 1, 6.12323e-17, 0, 0, 0, 0, 1, 0, '+x+', '+y+', '+z+', 1)'
-                        break;
-                    case 'UF':
-                        transform = 'matrix3d(3.7494e-33, -6.12323e-17, -1, 0, 1, 6.12323e-17, 0, 0, 6.12323e-17, -1, 6.12323e-17, 0, '+x+', '+y+', '+z+', 1)'
-                        break;
-                    case 'UL':
-                        transform = 'matrix3d(-6.12323e-17, 1, -1.22465e-16, 0, 1, 6.12323e-17, 0, 0, 7.49879e-33, -1.22465e-16, -1, 0, '+x+', '+y+', '+z+', 1)'
-                        break;
-                    case 'UB':
-                        transform = 'matrix3d(-1.12482e-32, 1.83697e-16, 1, 0, 1, 6.12323e-17, 0, 0, -6.12323e-17, 1, -1.83697e-16, 0, '+x+', '+y+', '+z+', 1)'
-                        break;
-
-                    case 'DL':
-                        transform = 'matrix3d(6.12323e-17, 1, 0, 0, -1, 6.12323e-17, 0, 0, 0, 0, 1, 0, '+x+', '+y+', '+z+', 1)'
-                        break;
-                    case 'DB':
-                        transform = 'matrix3d(3.7494e-33, 6.12323e-17, -1, 0, -1, 6.12323e-17, 0, 0, 6.12323e-17, 1, 6.12323e-17, 0, '+x+', '+y+', '+z+', 1)'
-                        break;
-                    case 'DR':
-                        transform = 'matrix3d(-6.12323e-17, -1, -1.22465e-16, 0, -1, 6.12323e-17, 0, 0, 7.49879e-33, 1.22465e-16, -1, 0, '+x+', '+y+', '+z+', 1)'
-                        break;
-                    case 'DF':
-                        transform = 'matrix3d(-1.12482e-32, -1.83697e-16, 1, 0, -1, 6.12323e-17, 0, 0, -6.12323e-17, -1, -1.83697e-16, 0, '+x+', '+y+', '+z+', 1)'
-                        break;
-
-                    case 'FU':
-                        transform = 'matrix3d(6.12323e-17, 0, 1, 0, 0, 1, 0, 0, -1, 0, 6.12323e-17, 0, '+x+', '+y+', '+z+', 1)'
-                        break;
-                    case 'FL':
-                        transform = 'matrix3d(3.7494e-33, 1, 6.12323e-17, 0, -6.12323e-17, 6.12323e-17, -1, 0, -1, 0, 6.12323e-17, 0, '+x+', '+y+', '+z+', 1)'
-                        break;
-                    case 'FD':
-                        transform = 'matrix3d(-6.12323e-17, 1.22465e-16, -1, 0, -7.49879e-33, -1, -1.22465e-16, 0, -1, 0, 6.12323e-17, 0, '+x+', '+y+', '+z+', 1)'
-                        break;
-                    case 'FR':
-                        transform = 'matrix3d(-1.12482e-32, -1, -1.83697e-16, 0, 6.12323e-17, -1.83697e-16, 1, 0, -1, 0, 6.12323e-17, 0, '+x+', '+y+', '+z+', 1)'
-                        break;
-                        
-
-                    case 'RD':
-                        transform = 'matrix3d(-1, 1.22465e-16, 0, 0, -1.22465e-16, -1, 0, 0, 0, 0, 1, 0, '+x+', '+y+', '+z+', 1)'
-                        break;
-                    case 'RB':
-                        transform = 'matrix3d(-1, 1.22465e-16, 0, 0, -7.49882e-33, -6.12323e-17, 1, 0, 1.22465e-16, 1, 6.12323e-17, 0, '+x+', '+y+', '+z+', 1)'
-                        break;
-                    case 'RU':
-                        transform = 'matrix3d(-1, 1.22465e-16, 0, 0, 1.22465e-16, 1, 1.22465e-16, 0, 1.49976e-32, 1.22465e-16, -1, 0, '+x+', '+y+', '+z+', 1)'
-                        break;
-                    case 'RF':
-                        transform = 'matrix3d(-1, 1.22465e-16, 0, 0, 2.24965e-32, 1.83697e-16, -1, 0, -1.22465e-16, -1, -1.83697e-16, 0, '+x+', '+y+', '+z+', 1)'
-                        break;
-
-
-                    case 'BU':
-                        transform = 'matrix3d(6.12323e-17, 0, -1, 0, 0, 1, 0, 0, 1, 0, 6.12323e-17, 0, '+x+', '+y+', '+z+', 1)'
-                        break;
-                    case 'BL':
-                        transform = 'matrix3d(3.7494e-33, 1, -6.12323e-17, 0, -6.12323e-17, 6.12323e-17, 1, 0, 1, 0, 6.12323e-17, 0, '+x+', '+y+', '+z+', 1)'
-                        break;
-                    case 'BD':
-                        transform = 'matrix3d(-6.12323e-17, 1.22465e-16, 1, 0, -7.49879e-33, -1, 1.22465e-16, 0, 1, 0, 6.12323e-17, 0, '+x+', '+y+', '+z+', 1)'
-                        break;
-                    case 'BR':
-                        transform = 'matrix3d(-1.12482e-32, -1, 1.83697e-16, 0, 6.12323e-17, -1.83697e-16, -1, 0, 1, 0, 6.12323e-17, 0, '+x+', '+y+', '+z+', 1)'
-                        break;
-
-
-                    case 'LU':
-                        transform = 'matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, '+x+', '+y+', '+z+', 1)'
-                        break;
-                    case 'LF':
-                        transform = 'matrix3d(1, 0, 0, 0, 0, 6.12323e-17, 1, 0, 0, -1, 6.12323e-17, 0, '+x+', '+y+', '+z+', 1)'
-                        break;
-                    case 'LD':
-                        transform = 'matrix3d(1, 0, 0, 0, 0, -1, 1.22465e-16, 0, 0, -1.22465e-16, -1, 0, '+x+', '+y+', '+z+', 1)'
-                        break;
-                    case 'LB':
-                        transform = 'matrix3d(1, 0, 0, 0, 0, -1.83697e-16, -1, 0, 0, 1, -1.83697e-16, 0, '+x+', '+y+', '+z+', 1)'
-                        break;
-                    
-                
-                    default:
-                        break;
-                }
-                return transform;
-            }
-
-            let newCode= (currentPos, axyR, direction) => {
-                let U = [];
-                U.push('R')
-                U.push('F')
-                U.push('L')
-                U.push('B')
-
-                let D = [];
-                D.push('L')
-                D.push('B')
-                D.push('R')
-                D.push('F')
-
-                let F = [];
-                F.push('U')
-                F.push('L')
-                F.push('D')
-                F.push('R')
-
-                let R = [];
-                R.push('D')
-                R.push('B')
-                R.push('U')
-                R.push('F')
-                
-                let B = [];
-                B.push('U')
-                B.push('L')
-                B.push('D')
-                B.push('R')
-
-                let L = [];
-                L.push('U')
-                L.push('F')
-                L.push('D')
-                L.push('B')
-
-                let getArrFace = (letter) => {
-                    if (letter == 'U') return U;
-                    if (letter == 'D') return D;
-                    if (letter == 'F') return F;
-                    if (letter == 'R') return R;
-                    if (letter == 'B') return B;
-                    if (letter == 'L') return L;
-                }
-                
-
-
-
-                // let currentPos = 'LU';
-                // let axyR = 'z';
-                // let direction = -1
-
-                
-
-                if (axyR == 'x') {
-
-                    if (currentPos.charAt(0) != 'R' && currentPos.charAt(0) != 'F') {
-                        
-                        direction = direction*-1;
-                    }
-
-                    console.log('Mode X')
-                        let arrFace = getArrFace(currentPos.charAt(0))
-                        let n = arrFace.length;
-
-                        let offset = -1;
-                        for (let i = 0; i < arrFace.length; i++) {
-                            console.log('cherche '+arrFace[i]+' == '+currentPos.charAt(1))
-                            if (arrFace[i] == currentPos.charAt(1)) {
-                                offset = i;
-                                console.log('offset trouvé', i)
-                                break;
-                            }
-
-                        }
-                        let newOffset = -99;
-                        console.log('demande ', (offset + direction))
-                        if (offset + direction < 0) {
-                            newOffset = arrFace.length + direction;
-                        } else if (offset + direction > arrFace.length-1) {
-                            newOffset = 0
-                        }else {
-                            newOffset = (offset + direction)
-                        }
-                        
-                        console.log('offset = ', offset,' index passe à ', newOffset,':', arrFace[newOffset], 'return '+currentPos.charAt(0)+arrFace[newOffset])
-
-                        return currentPos.charAt(0)+arrFace[newOffset];
-                        
-                } else if (axyR == 'y') {
-                    
-                    if (currentPos.charAt(0) != 'B' && currentPos != 'LF') {
-                        console.log('inverse direction')
-                        direction = direction*-1;
-                    }
-
-
-                    console.log('Mode Y')
-                    let arrFace = getArrFace(currentPos.charAt(1))
-
-                    let offset = -1;
-                    for (let i = 0; i < arrFace.length; i++) {
-                        console.log('cherche '+arrFace[i]+' == '+currentPos.charAt(0))
-                        if (arrFace[i] == currentPos.charAt(0)) {
-                            offset = i;
-                            console.log('offset trouvé', i)
-                            break;
-                        }
-
-                    }
-                    let newOffset = -99;
-                    console.log('demande ', (offset + direction))
-                    if (offset + direction < 0) {
-                        newOffset = arrFace.length + direction;
-                    } else if (offset + direction > arrFace.length-1) {
-                        newOffset = 0
-                    }else {
-                        newOffset = (offset + direction)
-                    }
-                    console.log('offset = ', offset,' index passe à ', newOffset,':', arrFace[newOffset], 'return '+arrFace[newOffset]+currentPos.charAt(1))
-
-                    console.log('exclusion ', currentPos.charAt(0))
-                    // if (currentPos.charAt(0) == 'L'   && direction == -1){
-
-                        // if (newOffset==0) newOffset=2
-                        // if (newOffset==1) newOffset=3
-                        // if (newOffset==2) newOffset=0
-                        // if (newOffset==3) newOffset=1
-                    // }
-                    let nexOffsetY = currentPos.charAt(1);
-                    
-                    console.log('TEST ', currentPos, direction)
-                    if (currentPos == 'LF' && direction == -1) {
-                        return 'DB';
-                    }
-
-
-                    return arrFace[newOffset]+currentPos.charAt(1);
-
-                } else if (axyR == 'z') {
-                    console.log('Mode Z get tab '+currentPos.charAt(1))
-                    let arrFace = getArrFace(currentPos.charAt(1))
-
-                    let searchFace = 1;
-
-                    // début de la recherche de la face arriere
-                    let offset = -1;
-                    for (let i = 0; i < arrFace.length; i++) {
-                        console.log('cherche '+arrFace[i]+' == '+currentPos.charAt(0))
-                        if (arrFace[i] == currentPos.charAt(0)) {
-                            offset = i;
-                            console.log('offset trouvé', i)
-                            break;
-                        }
-
-                    }
-                    let newOffset = -99;
-                    let faceX = arrFace[offset];
-                    console.log('demande ', (offset + searchFace))
-                    if (offset + searchFace < 0) {
-                        newOffset = arrFace.length + searchFace;
-                    } else if (offset + searchFace > arrFace.length-1) {
-                        newOffset = 0
-                    }else {
-                        newOffset = (offset + searchFace)
-                    }
-                    // fin de la recherche de la face arriere
-                    console.log('face Z arriere = '+arrFace[newOffset])
-
-                    // recupere le tableau back pour simplifié l'explication
-                    // mais en realité ce n'est pas vraiment le tableau back car
-                    // cela depend de la rotation du cubi 
-                    arrFace = getArrFace(arrFace[newOffset])
-                    console.log('face arriere debug ', arrFace)
-                    
-                    // retrouve la face X dans le tableau back 
-                    // pour faire tourné les deux face x y contenu
-                    // dans ce tableau
-                    for (let i = 0; i < arrFace.length; i++) {
-                        console.log('cherche '+arrFace[i]+' == '+faceX)
-                        if (arrFace[i] == faceX) {
-                            offset = i;
-                            console.log('offset trouvé', i)
-                            break;
-                        }
-
-                    }
-                    // console.log('faces actuelles = ', arrFace[offset] , arrFace[offset-1], offset , offset-1);
-                    // console.log('faces demandé = ', offset+direction , offset-1+direction);
-
-                    // nouvelle face demandé pour la face left que je nome x
-                    let fxIndex = offset-direction
-                    console.log('fxIndex', fxIndex)
-                    // -99 pour montrer que la valeur n'a pas ete touché
-                    let offsetX = -99
-                    // recherche l'index du tableau si il n'existe 
-                    // pas en dessous de zero ou au dessus de la taille du tableau
-                    if (fxIndex < 0) {
-                        offsetX = arrFace.length + fxIndex;
-                    } else if (fxIndex > arrFace.length-1) {
-                        console.log('testX')
-                        offsetX = 0
-                    }else {
-                        offsetX = fxIndex
-                    }
-
-                    // nouvelle face demandé pour la face du haut que je nome y
-                    let fyIndex = fxIndex+1
-                    console.log('fyIndex', fyIndex)
-                    // -99 pour montrer que la valeur n'a pas ete touché
-                    let offsetY = -99
-                    // recherche l'index du tableau si il n'existe 
-                    // pas en dessous de zero ou au dessus de la taille du tableau
-                    if (fyIndex < 0) {
-                        offsetY = arrFace.length + fyIndex;
-                    } else if (fyIndex > arrFace.length-1) {
-                        offsetY = 0+1
-                    }else {
-                        offsetY = fyIndex
-                    }
-
-                    // console.log('faces nouvelles = ', arrFace[offsetX] , arrFace[offsetY], offsetX, offsetY);
-
-                    if (currentPos.charAt(0) != 'R'   && direction == -1){
-                        console.log('exclusion ', currentPos.charAt(0))
-
-                        if (offsetX==0) offsetX=2
-                        if (offsetX==1) offsetX=3
-                        if (offsetX==2) offsetX=0
-                        if (offsetX==3) offsetX=1
-                    }
-
-                    return arrFace[offsetX]+arrFace[offsetY];
-                }
-            }
-                            
-            // let code = newCode('LU', 'y', -1);
-            // console.log('code = ', code);
-
-            // let trasformTest = pos(code, -1,-1,-1)
-            // $('#cube1').css('transform', trasformTest);
-
-
-
-            // // // // test
-            // code = newCode(code, 'y', -1);
-            // console.log('code = ', code);
-
-            // trasformTest = pos(code, -1,-1,-1)
-            // $('#cube1').css('transform', trasformTest);
-
-
-
-
-
-            // GOOD
-            // let code = 'LU';
-            // let trasformTest = pos(code, -1,-1,-1)
-            // $('#cube1').css('transform', trasformTest);
-            
-            
-            // code = matriceCube.getCode(code, 'z', -1);
-            // console.log('code = ', code);
-            // trasformTest = pos(code, -1,-1,-1)
-            // $('#cube1').css('transform', trasformTest);
-
-
-            // code = matriceCube.getCode(code, 'z', -1);
-            // console.log('code = ', code);
-            // trasformTest = pos(code, -1,-1,-1)
-            // $('#cube1').css('transform', trasformTest);
-
-
-            // code = matriceCube.getCode(code, 'y', -1);
-            // console.log('code = ', code);
-            // trasformTest = pos(code, -1,-1,-1)
-            // $('#cube1').css('transform', trasformTest);
-      
-      
-
-
-
-
-
-            // .rotateX(90)
-
-            // matriceCube.select('z', 1);
-            // matriceCube.apply('z');
-            // matriceCube.apply('z');
-            // matriceCube.unselectAll().select('y', -1);
-            // matriceCube.apply('y');
-            // matriceCube.unselectAll().select('x', 1);
-            // matriceCube.apply('x');
-
             (async () => {
-                matriceCube.select('z', 1);
-                // await matriceCube.animate(90, 'z', 1); 
-                matriceCube.apply('z',1,1);
+                // matriceCube.select('z', 1);
+                // // await matriceCube.animate(90, 'z', 1); 
+                // matriceCube.apply('z',1,1);
 
-                matriceCube.unselectAll().select('z', 0);
-                // await matriceCube.animate(180, 'z', 0); 
-                matriceCube.apply('z',0,2);
+                // matriceCube.unselectAll().select('z', 0);
+                // // await matriceCube.animate(180, 'z', 0); 
+                // matriceCube.apply('z',0,2);
 
-                matriceCube.unselectAll().select('y', 0);
-                // await matriceCube.animate(90, 'y', 0); 
-                matriceCube.apply('y',0,3);
+                // matriceCube.unselectAll().select('y', 0);
+                // // await matriceCube.animate(90, 'y', 0); 
+                // matriceCube.apply('y',0,3);
 
 
-                matriceCube.unselectAll().select('x', -1);
-                // await matriceCube.animate(90, 'x', -1); 
-                matriceCube.apply('x',-1,1);
+                // matriceCube.unselectAll().select('x', -1);
+                // // await matriceCube.animate(90, 'x', -1); 
+                // matriceCube.apply('x',-1,1);
 
-                matriceCube.unselectAll().select('x', 0);
-                // await matriceCube.animate(-90, 'x', 0); 
-                matriceCube.apply('x',0,3);
+                // matriceCube.unselectAll().select('x', 0);
+                // // await matriceCube.animate(-90, 'x', 0); 
+                // matriceCube.apply('x',0,3);
 
-                matriceCube.unselectAll().select('x', 1);
-                // await matriceCube.animate(90, 'x', 1); 
-                matriceCube.apply('x',1,1);
+                // matriceCube.unselectAll().select('x', 1);
+                // // await matriceCube.animate(90, 'x', 1); 
+                // matriceCube.apply('x',1,1);
 
-                matriceCube.unselectAll().select('y', -1);
-                await matriceCube.animate(90, 'y', -1); 
+                // matriceCube.unselectAll().select('y', -1);
+                // await matriceCube.animate(90, 'y', -1); 
                 // matriceCube.apply('y',-1,1);
 
                 // matriceCube.unselectAll().select('y', 0);
@@ -672,14 +175,126 @@ import MatriceCube from '../../lib/MatriceCube.class.js';
 
                 // matriceCube.unselectAll().select('y', 1);
                 // await matriceCube.animate(90, 'y', 1); 
-                
-
-
-                
-                
             })()
+
+
+
+
+
+
+
+
+
+
+
+            let execute = () => {
+                return {
+                    U: async () => {
+                        matriceCube.unselectAll().select('y', -1);
+                        return await matriceCube.animate(-90, 'y', -1); 
+                    },
+                    Uprime: async () => {
+                        matriceCube.unselectAll().select('y', -1);
+                        return await matriceCube.animate(90, 'y', -1); 
+                    },
+                    D: async () => {
+                        matriceCube.unselectAll().select('y', 1);
+                        return await matriceCube.animate(90, 'y', 1); 
+                    },
+                    Dprime: async () => {
+                        matriceCube.unselectAll().select('y', 1);
+                        return await matriceCube.animate(-90, 'y', 1); 
+                    },
+                    R: async () => {
+                        matriceCube.unselectAll().select('x', 1);
+                        return await matriceCube.animate(90, 'x', 1); 
+                    },
+                    Rprime: async () => {
+                        matriceCube.unselectAll().select('x', 1);
+                        return await matriceCube.animate(-90, 'x', 1); 
+                    },
+                    L: async () => {
+                        matriceCube.unselectAll().select('x', -1);
+                        return await matriceCube.animate(-90, 'x', -1); 
+                    },
+                    Lprime: async () => {
+                        matriceCube.unselectAll().select('x', -1);
+                        return await matriceCube.animate(90, 'x', -1); 
+                    },
+                    F: async () => {
+                        matriceCube.unselectAll().select('z', 1);
+                        return await matriceCube.animate(90, 'z', 1); 
+                    },
+                    Fprime: async () => {
+                        matriceCube.unselectAll().select('z', 1);
+                        return await matriceCube.animate(-90, 'z', 1); 
+                    },
+                    B: async () => {
+                        matriceCube.unselectAll().select('z', -1);
+                        return await matriceCube.animate(-90, 'z', -1); 
+                    },
+                    Bprime: async () => {
+                        matriceCube.unselectAll().select('z', -1);
+                        return await matriceCube.animate(90, 'z', -1); 
+                    }
+                }
+            }
             
-         
+            $( "button#execute" ).click(async (e) =>{
+                const input = $(e.target).parent().find('.instructions')[0];
+                
+
+                const caracts = input.value.split('');
+                console.log('caracts',caracts);
+                
+
+                for (let i = 0; i < caracts.length; i++) {
+                    const char = caracts[i];
+                    console.log('char', char, 'caracts[key+1]', caracts[i+1]);
+                    if (char === 'U' && caracts[i+1] === "'") {
+                        await execute().Uprime();
+                        i++
+                    } else if (char === 'U') {
+                        await execute().U();
+                    } else if (char === 'D' && caracts[i+1] === "'") {
+                        await execute().Dprime();
+                        i++
+                    } else if (char === 'D') {
+                        await execute().D();
+                    } else if (char === 'R' && caracts[i+1] === "'") {
+                        await execute().Rprime();
+                        i++
+                    } else if (char === 'R') {
+                        await execute().R();
+                    } else if (char === 'L' && caracts[i+1] === "'") {
+                        await execute().Lprime();
+                        i++
+                    } else if (char === 'L') {
+                        await execute().L();
+                    } else if (char === 'F' && caracts[i+1] === "'") {
+                        await execute().Fprime();
+                        i++
+                    } else if (char === 'F') {
+                        await execute().F();
+                    } else if (char === 'B' && caracts[i+1] === "'") {
+                        await execute().Bprime();
+                        i++
+                    } else if (char === 'B') {
+                        await execute().B();
+                    }
+                }
+
+            })
+
+
+
+
+
+
+
+
+
+
 
 
 
